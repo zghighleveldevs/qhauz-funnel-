@@ -1,0 +1,266 @@
+<style>
+/* Qhauz booking page (step 2 of 3). Same committed dark brand as the v3 funnel. */
+@property --ang{syntax:'<angle>';initial-value:0deg;inherits:false}
+:root{
+  --navy:#0a1a33; --navy-2:#0d2242; --navy-deep:#06111f;
+  --cream:#f4efe4; --sky:#63b3ed; --sky-soft:#b6dcf8; --sky-ink:#071427;
+  --muted:#a9b8cd; --dim:#7487a2; --line:rgba(99,179,237,.13); --line-2:rgba(169,184,205,.15);
+  --card:#fff; --ink:#13213a; --ink-2:#4a5970; --blue:#1f6fc5; --blue-h:#185ba6; --ok:#2f9e6e;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Inter",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--navy-deep);color:var(--cream);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navy-deep);z-index:80}
+a{color:inherit} img{max-width:100%} p{margin:0}
+:is(a,button):focus-visible{outline:3px solid var(--sky-soft);outline-offset:3px}
+.band{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));position:relative}
+.wrap{max-width:1180px;margin:0 auto;position:relative}
+h1,h2,h3{font-family:var(--display);font-weight:600;color:var(--cream);text-wrap:balance;margin:0;letter-spacing:-.018em}
+h1 em{font-style:italic;color:var(--sky);font-weight:500}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--sky);display:inline-flex;align-items:center;gap:10px;font-weight:500}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sky);animation:ping 2.4s ease-out infinite;flex:none}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(99,179,237,.55)}80%,100%{box-shadow:0 0 0 9px rgba(99,179,237,0)}}
+.fade-up{opacity:0;transform:translateY(16px);animation:fu .9s var(--ease) forwards;animation-delay:var(--d,0s)}
+@keyframes fu{to{opacity:1;transform:none}}
+.w{display:inline-block;opacity:0;transform:translateY(.55em);filter:blur(6px);animation:word .9s var(--ease) forwards;animation-delay:calc(.1s + var(--i) * .06s)}
+@keyframes word{to{opacity:1;transform:none;filter:none}}
+
+/* header */
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px;border-bottom:1px solid var(--line-2)}
+.logo{font-family:var(--display);font-weight:600;font-size:24px;text-decoration:none}
+.logo span{color:var(--sky)}
+.secure{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.secure i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(47,158,110,.2)}
+
+/* hero */
+.top{overflow:hidden;background:radial-gradient(1000px 520px at 50% -10%,rgba(99,179,237,.18),transparent 65%),var(--navy)}
+.aurora{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.aurora i{position:absolute;border-radius:50%;filter:blur(80px);opacity:.3}
+.aurora i:nth-child(1){width:40vw;height:40vw;max-width:560px;max-height:560px;background:#1f6fc5;left:-10%;top:-20%;animation:d1 22s ease-in-out infinite alternate}
+.aurora i:nth-child(2){width:34vw;height:34vw;max-width:480px;max-height:480px;background:#63b3ed;right:-8%;top:10%;opacity:.18;animation:d2 26s ease-in-out infinite alternate}
+@keyframes d1{to{transform:translate(20%,25%) scale(1.15)}} @keyframes d2{to{transform:translate(-20%,-10%) scale(.9)}}
+.gridlines{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse 70% 80% at 50% 0%,#000 30%,transparent 80%);mask-image:radial-gradient(ellipse 70% 80% at 50% 0%,#000 30%,transparent 80%)}
+.intro{display:grid;justify-items:center;text-align:center;gap:18px;padding-block:56px 40px}
+.intro h1{font-size:clamp(34px,5.4vw,62px);line-height:1.04;max-width:18ch}
+.intro .lede{color:var(--muted);font-size:17.5px;max-width:52ch}
+
+/* stepper */
+.stepper{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;max-width:620px;position:relative}
+.stepper::before{content:"";position:absolute;left:16.6%;right:16.6%;top:17px;height:2px;background:var(--line-2)}
+.stepper::after{content:"";position:absolute;left:16.6%;top:17px;height:2px;width:0;background:linear-gradient(90deg,var(--sky),#fff);animation:fill 1.4s var(--ease) .6s forwards}
+@keyframes fill{to{width:33.4%}}
+.stepper li{display:grid;justify-items:center;gap:8px;position:relative;z-index:1;min-width:0}
+.stepper .n{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:12px;background:var(--navy-2);border:1.5px solid var(--line-2);color:var(--dim)}
+.stepper .done .n{background:var(--sky);border-color:var(--sky);color:var(--sky-ink)}
+.stepper .now .n{border-color:var(--sky);color:var(--sky);box-shadow:0 0 0 0 rgba(99,179,237,.5);animation:ring 2s ease-out 1.8s infinite}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(99,179,237,.5)}80%,100%{box-shadow:0 0 0 12px rgba(99,179,237,0)}}
+.stepper b{font-size:13px;font-weight:600}
+.stepper span{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.stepper .done span,.stepper .now span{color:var(--sky)}
+
+/* main grid */
+.main{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:32px;align-items:start;padding-block:8px 100px}
+.glow{position:relative;border-radius:18px;padding:1.5px;background:rgba(99,179,237,.22);isolation:isolate}
+.glow::before{content:"";position:absolute;inset:0;border-radius:18px;background:conic-gradient(from var(--ang),transparent 0 55%,rgba(99,179,237,.9) 72%,#fff 78%,rgba(99,179,237,.9) 84%,transparent 100%);animation:spin 6s linear infinite;z-index:-1}
+.glow::after{content:"";position:absolute;inset:-30px 0;border-radius:40px;background:radial-gradient(closest-side,rgba(99,179,237,.22),transparent);z-index:-2;filter:blur(20px)}
+@keyframes spin{to{--ang:360deg}}
+.cal{color-scheme:light;background:var(--card);color:var(--ink);border-radius:16.5px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.5)}
+.cal-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 22px;border-bottom:1px solid #e6ecf3;font-size:13px;color:var(--ink-2)}
+.cal-head .t{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--ink)}
+.cal-head .t::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(47,158,110,.18)}
+.cal-frame{min-height:760px;position:relative}
+.cal-frame.pvmode{min-height:0}
+.cal-frame iframe{width:100%;min-height:760px;border:0;display:block;overflow:hidden}
+.loading{position:absolute;inset:0;display:grid;place-items:center;gap:10px;align-content:center;color:var(--ink-2);font-size:14px;background:#fff;transition:opacity .4s}
+.loading.gone{opacity:0;pointer-events:none}
+.spin{width:34px;height:34px;border-radius:50%;border:3px solid #e6ecf3;border-top-color:var(--blue);animation:sp 0.9s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* preview (shown when the live widget can't load, e.g. outside go.qhauz.com) */
+.pv{padding:22px;display:grid;gap:18px}
+.pv h3{font-family:var(--body);font-size:19px;font-weight:600;color:var(--ink);letter-spacing:0}
+.meta{border:1px solid #e6ecf3;border-radius:10px;padding:14px 16px;display:grid;gap:10px;font-size:13.5px;color:var(--ink-2)}
+.meta div{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start}
+.meta svg{margin-top:2px}
+.ghost{border:1.5px dashed #c7d3e2;border-radius:12px;padding:26px 22px;display:grid;justify-items:center;text-align:center;gap:12px;background:repeating-linear-gradient(135deg,#fafcfe 0 12px,#f4f7fb 12px 24px)}
+.ghost .mini{display:grid;grid-template-columns:repeat(7,26px);gap:6px;margin-bottom:4px}
+.ghost .mini i{height:26px;border-radius:50%;background:#e6ecf3}
+.ghost .mini i.a{background:#cfe3f7}
+.ghost p{font-size:14px;color:var(--ink-2);max-width:40ch}
+.ghost b{color:var(--ink)}
+.open{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15.5px;color:#fff;background:var(--blue);border-radius:10px;padding:14px 22px;text-decoration:none;transition:background .2s,transform .2s var(--ease)}
+.open:hover{background:var(--blue-h);transform:translateY(-1px)}
+
+/* sidebar */
+.side{display:grid;gap:16px;min-width:0}
+.box{border:1px solid var(--line-2);border-radius:16px;padding:22px;background:rgba(255,255,255,.025);display:grid;gap:14px;min-width:0}
+.box .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky)}
+.box h3{font-size:21px;line-height:1.2}
+.who{display:flex;gap:14px;align-items:center}
+.who img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:50% 20%;border:2px solid var(--sky);flex:none}
+.who b{display:block;font-size:16px}
+.who span{font-size:13px;color:var(--muted)}
+.box blockquote{margin:0;font-family:var(--display);font-style:italic;font-size:17px;line-height:1.45;color:var(--cream)}
+.list{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.list li{display:grid;grid-template-columns:28px 1fr;gap:12px;font-size:14.5px;color:var(--muted)}
+.list li b{color:var(--cream);font-weight:600;display:block;font-size:14.5px}
+.list .ic{width:28px;height:28px;border-radius:8px;background:rgba(99,179,237,.14);display:grid;place-items:center;color:var(--sky)}
+.tl{list-style:none;padding:0;margin:0;display:grid;gap:0;position:relative}
+.tl::before{content:"";position:absolute;left:13px;top:10px;bottom:10px;width:1.5px;background:linear-gradient(var(--sky),rgba(99,179,237,.15))}
+.tl li{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:6px 0;font-size:14px;color:var(--muted);position:relative}
+.tl li::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--navy-deep);border:2px solid var(--sky);margin:5px 0 0 7px}
+.tl b{color:var(--cream);font-weight:600;display:block}
+.help{display:grid;gap:4px;font-size:14px;color:var(--muted)}
+.help b{font-size:18px;color:var(--cream);font-weight:600}
+.copy{justify-self:start;font:inherit;font-size:12.5px;color:var(--sky-soft);background:none;border:1px solid var(--line-2);border-radius:999px;padding:6px 12px;cursor:pointer;margin-top:6px}
+.copy:hover{border-color:var(--sky)}
+
+/* entrance */
+.rise{opacity:0;transform:translateY(24px);animation:fu .9s var(--ease) forwards;animation-delay:var(--d,0s)}
+
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-block:22px 28px;border-top:1px solid var(--line-2);font-size:12.5px;color:var(--dim)}
+footer a{text-decoration:none} footer a:hover{color:var(--cream)}
+
+@media (max-width:980px){
+  .main{grid-template-columns:minmax(0,1fr)}
+  .side{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .side{grid-template-columns:minmax(0,1fr)}
+  .secure{display:none}
+  .stepper b{font-size:12px}
+  .cal-head{padding:14px 16px}
+  .pv{padding:16px}
+  .ghost .mini{grid-template-columns:repeat(7,22px)}
+  .ghost .mini i{height:22px}
+  .intro{padding-block:40px 30px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .w,.fade-up,.rise{opacity:1!important;transform:none!important;filter:none!important}
+  .stepper::after{width:33.4%}
+}
+</style>
+
+<header class="band hdr">
+  <div class="wrap">
+    <a class="logo" href="https://go.qhauz.com/dealer-leads" aria-label="Qhauz home">Qhauz<span>.</span></a>
+    <span class="secure"><i></i>Survey received · pick your time below</span>
+  </div>
+</header>
+
+<main>
+<section class="band top" aria-labelledby="h">
+  <div class="aurora" aria-hidden="true"><i></i><i></i></div>
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap intro">
+    <p class="eyebrow fade-up">Step 2 of 3 · Survey complete</p>
+    <h1 id="h"><span class="w" style="--i:0">You're</span> <span class="w" style="--i:1">Almost</span> <span class="w" style="--i:2">There.</span> <em><span class="w" style="--i:3">Pick</span> <span class="w" style="--i:4">a</span> <span class="w" style="--i:5">Time</span></em> <span class="w" style="--i:6">for</span> <span class="w" style="--i:7">Your</span> <span class="w" style="--i:8">Dealer</span> <span class="w" style="--i:9">Growth</span> <span class="w" style="--i:10">Call.</span></h1>
+    <p class="lede fade-up" style="--d:.8s" id="greet">Choose a time that works for you. It's a 20-minute screen share built around your store.</p>
+    <ol class="stepper fade-up" style="--d:.5s" aria-label="Progress">
+      <li class="done"><span class="n" aria-hidden="true">✓</span><b>Survey</b><span>Done</span></li>
+      <li class="now" aria-current="step"><span class="n">02</span><b>Pick a time</b><span>You are here</span></li>
+      <li><span class="n">03</span><b>Ad plan call</b><span>20 minutes</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="band" style="background:var(--navy)" aria-label="Book your call">
+  <div class="wrap main">
+    <div class="glow rise" style="--d:.7s">
+      <div class="cal">
+        <div class="cal-head"><span class="t">Your Store's Ad Plan</span><span>20 min · Google Meet</span></div>
+        <div class="cal-frame" id="calFrame"></div>
+      </div>
+    </div>
+
+    <aside class="side">
+      <div class="box rise" style="--d:.85s">
+        <p class="k">Your call with</p>
+        <div class="who"><img src="__JEREMY__" alt="Jeremy Pine" width="64" height="64"><div><b>Jeremy Pine</b><span>Founder, Qhauz · 16+ years inside dealerships</span></div></div>
+        <blockquote>In 20 minutes, we'll look at where your buyers come from now, what it's costing you, and how we'd approach ads for your store.</blockquote>
+      </div>
+      <div class="box rise" style="--d:1s">
+        <p class="k">What we'll cover</p>
+        <ul class="list">
+          <li><span class="ic">__CHECK__</span><span><b>Where your buyers come from now</b>Your current lead sources and what's working</span></li>
+          <li><span class="ic">__CHECK__</span><span><b>What it's costing you</b>Where leads and money slip through</span></li>
+          <li><span class="ic">__CHECK__</span><span><b>How we'd approach ads for your store</b>Built around your inventory, people and offers</span></li>
+        </ul>
+      </div>
+      <div class="box rise" style="--d:1.15s">
+        <p class="k">After you book</p>
+        <ol class="tl">
+          <li><span><b>Confirmation</b>Your Google Meet link arrives by email and text</span></li>
+          <li><span><b>Reminder</b>A reminder before your call so it doesn't slip</span></li>
+          <li><span><b>Your ad plan</b>Join from your phone or laptop and share your screen</span></li>
+        </ol>
+      </div>
+      <div class="box rise" style="--d:1.3s">
+        <p class="k">Can't find a time?</p>
+        <div class="help"><span>Call Jeremy directly</span><b id="ph">(913) 407-7430</b><span>jeremy@qhauz.com</span></div>
+        <button type="button" class="copy" id="copyPh">Copy number</button>
+      </div>
+    </aside>
+  </div>
+</section>
+</main>
+
+<footer class="band" style="background:var(--navy-deep)">
+  <div class="wrap"><span>© 2026 Qhauz</span><a href="https://sms.qhauz.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a></div>
+</footer>
+
+<script>
+(function(){
+  const WIDGET = "https://api.leadconnectorhq.com/widget/booking/U8YXL0kHj0zApJ1lHRq1";
+  const CAL_PAGE = "https://go.qhauz.com/calendar-page-119534";
+  const EMBED = __EMBED__; // true on the hosted page (go.qhauz.com); false in the preview
+  const box = document.getElementById("calFrame");
+  const q = new URLSearchParams(location.search);
+  const esc = s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+  // personal greeting when the survey passes a first name
+  const first = (q.get("first_name")||"").trim();
+  if(first) document.getElementById("greet").textContent = "Thanks, "+first+". Choose a time that works for you. It's a 20-minute screen share built around your store.";
+
+  // pass the survey's prefill fields through to the booking widget
+  const pass = new URLSearchParams();
+  ["first_name","last_name","email","phone"].forEach(k=>{ if(q.get(k)) pass.set(k,q.get(k)); });
+  const src = WIDGET + (pass.toString() ? "?"+pass.toString() : "");
+
+  if(EMBED){
+    box.innerHTML = '<div class="loading" id="ld"><span class="spin"></span>Loading available times…</div>'
+      + '<iframe src="'+esc(src)+'" id="U8YXL0kHj0zApJ1lHRq1_'+Date.now()+'" scrolling="no" title="Book your 20-minute ad plan call"></iframe>';
+    const f = box.querySelector("iframe");
+    f.addEventListener("load",()=>document.getElementById("ld").classList.add("gone"));
+    setTimeout(()=>{const l=document.getElementById("ld"); if(l) l.classList.add("gone");},8000);
+    const s=document.createElement("script"); s.src="https://link.msgsndr.com/js/form_embed.js"; s.async=true; document.body.appendChild(s);
+  } else {
+    const ic = p=>'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4a5970" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>';
+    box.classList.add('pvmode');
+    let mini=''; for(let k=0;k<28;k++) mini+='<i'+(k>=24?' class="a"':'')+'></i>';
+    box.innerHTML = '<div class="pv">'
+      + '<h3>Your Store\'s Ad Plan</h3>'
+      + '<div class="meta">'
+      +   '<div>'+ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>')+'<span>20 min</span></div>'
+      +   '<div>'+ic('<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>')+'<span>Google Meet screen share</span></div>'
+      +   '<div>'+ic('<path d="M4 6h16M4 12h16M4 18h10"/>')+'<span>In 20 minutes, we\'ll look at where your buyers come from now, what it\'s costing you, and how we\'d approach ads for your store.</span></div>'
+      + '</div>'
+      + '<div class="ghost"><div class="mini" aria-hidden="true">'+mini+'</div>'
+      +   '<p><b>The live booking calendar loads here</b> once this page is hosted on go.qhauz.com. It shows Jeremy\'s real open times from GoHighLevel.</p>'
+      +   '<a class="open" href="'+esc(CAL_PAGE+(pass.toString()?"?"+pass.toString():""))+'" target="_blank" rel="noopener">Open the live calendar <span aria-hidden="true">→</span></a>'
+      + '</div></div>';
+  }
+
+  document.getElementById("copyPh").addEventListener("click",function(){
+    const b=this, el=document.getElementById("ph"), orig=b.textContent;
+    const ok=()=>{b.textContent="Copied ✓";setTimeout(()=>b.textContent=orig,1500);};
+    const sel=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Selected, press copy";setTimeout(()=>b.textContent=orig,2000);};
+    try{navigator.clipboard.writeText(el.textContent).then(ok,sel);}catch(e){sel();}
+  });
+})();
+</script>

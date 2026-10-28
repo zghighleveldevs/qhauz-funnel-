@@ -1,0 +1,399 @@
+<style>
+/* Qhauz thank-you page (step 3 of 3) with video. Same committed dark brand as the funnel. */
+@property --ang{syntax:'<angle>';initial-value:0deg;inherits:false}
+:root{
+  --navy:#0a1a33; --navy-2:#0d2242; --navy-deep:#06111f;
+  --cream:#f4efe4; --sky:#63b3ed; --sky-soft:#b6dcf8; --sky-ink:#071427;
+  --muted:#a9b8cd; --dim:#7487a2; --line:rgba(99,179,237,.13); --line-2:rgba(169,184,205,.15);
+  --ok:#2f9e6e; --ok-soft:#7fd6ae; --warn:#f2c46d;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Inter",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--navy-deep);color:var(--cream);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navy-deep);z-index:80}
+a{color:inherit} img{max-width:100%} p{margin:0}
+:is(a,button,input):focus-visible{outline:3px solid var(--sky-soft);outline-offset:3px}
+.band{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));position:relative}
+.wrap{max-width:1160px;margin:0 auto;position:relative}
+h1,h2,h3{font-family:var(--display);font-weight:600;color:var(--cream);text-wrap:balance;margin:0;letter-spacing:-.018em}
+h1 em,h2 em{font-style:italic;color:var(--sky);font-weight:500}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--sky);display:inline-flex;align-items:center;gap:10px;font-weight:500}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sky);animation:ping 2.4s ease-out infinite;flex:none}
+.eyebrow.warn{color:var(--warn)} .eyebrow.warn::before{background:var(--warn);animation-name:pingw}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(99,179,237,.55)}80%,100%{box-shadow:0 0 0 9px rgba(99,179,237,0)}}
+@keyframes pingw{0%{box-shadow:0 0 0 0 rgba(242,196,109,.6)}80%,100%{box-shadow:0 0 0 9px rgba(242,196,109,0)}}
+.lede{color:var(--muted);font-size:17.5px;max-width:58ch}
+.fade-up{opacity:0;transform:translateY(16px);animation:fu .9s var(--ease) forwards;animation-delay:var(--d,0s)}
+@keyframes fu{to{opacity:1;transform:none}}
+.w{display:inline-block;opacity:0;transform:translateY(.55em);filter:blur(6px);animation:word .9s var(--ease) forwards;animation-delay:calc(.15s + var(--i) * .07s)}
+@keyframes word{to{opacity:1;transform:none;filter:none}}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease) var(--d,0s),transform .9s var(--ease) var(--d,0s)}
+.rv.on{opacity:1;transform:none}
+
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px;border-bottom:1px solid var(--line-2)}
+.logo{font-family:var(--display);font-weight:600;font-size:24px;text-decoration:none}
+.logo span{color:var(--sky)}
+.status{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(47,158,110,.2)}
+
+.top{overflow:hidden;background:radial-gradient(1100px 600px at 50% -10%,rgba(99,179,237,.18),transparent 65%),var(--navy)}
+.aurora{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.aurora i{position:absolute;border-radius:50%;filter:blur(80px);opacity:.28}
+.aurora i:nth-child(1){width:40vw;height:40vw;max-width:560px;max-height:560px;background:#1f6fc5;left:-10%;top:-15%;animation:d1 22s ease-in-out infinite alternate}
+.aurora i:nth-child(2){width:34vw;height:34vw;max-width:480px;max-height:480px;background:#63b3ed;right:-8%;top:20%;opacity:.16;animation:d2 26s ease-in-out infinite alternate}
+@keyframes d1{to{transform:translate(20%,25%) scale(1.15)}} @keyframes d2{to{transform:translate(-20%,-10%) scale(.9)}}
+.gridlines{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 0%,#000 30%,transparent 80%);mask-image:radial-gradient(ellipse 70% 70% at 50% 0%,#000 30%,transparent 80%)}
+.intro{display:grid;justify-items:center;text-align:center;gap:18px;padding-block:52px 34px}
+.intro h1{font-size:clamp(36px,5.6vw,64px);line-height:1.03;max-width:17ch}
+.reserved{display:inline-flex;align-items:center;gap:10px;background:rgba(47,158,110,.12);border:1px solid rgba(127,214,174,.35);color:var(--ok-soft);border-radius:999px;padding:8px 16px 8px 10px;font-size:13.5px;font-weight:500}
+.reserved svg{flex:none}
+.reserved .tk{stroke-dasharray:24;stroke-dashoffset:24;animation:draw .5s var(--ease) .4s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+.stepper{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;max-width:720px;position:relative}
+.stepper::before{content:"";position:absolute;left:12.5%;right:12.5%;top:17px;height:2px;background:var(--line-2)}
+.stepper::after{content:"";position:absolute;left:12.5%;top:17px;height:2px;width:0;background:linear-gradient(90deg,var(--sky),#fff);animation:fill 1.3s var(--ease) .6s forwards}
+@keyframes fill{to{width:50%}}
+.stepper li{display:grid;justify-items:center;gap:7px;position:relative;z-index:1;min-width:0}
+.stepper .n{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:12px;background:var(--sky);border:1.5px solid var(--sky);color:var(--sky-ink)}
+.stepper .now .n{background:var(--navy-deep);border-color:var(--warn);color:var(--warn);animation:ringw 2s ease-out 1.6s infinite}
+@keyframes ringw{0%{box-shadow:0 0 0 0 rgba(242,196,109,.5)}80%,100%{box-shadow:0 0 0 12px rgba(242,196,109,0)}}
+.stepper .later .n{background:var(--navy-2);border-color:var(--line-2);color:var(--dim)}
+.stepper b{font-size:12.5px;font-weight:600}
+.stepper span{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--sky)}
+.stepper .now span{color:var(--warn)} .stepper .later span{color:var(--dim)}
+.stepper.complete .now .n{background:var(--sky);border-color:var(--sky);color:var(--sky-ink);animation:none}
+.stepper.complete .now span{color:var(--sky)}
+
+.theater{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:22px;align-items:start;padding-block:10px 90px}
+.glow{position:relative;border-radius:20px;padding:1.5px;background:rgba(99,179,237,.22);isolation:isolate;min-width:0}
+.glow::before{content:"";position:absolute;inset:0;border-radius:20px;background:conic-gradient(from var(--ang),transparent 0 55%,rgba(99,179,237,.95) 72%,#fff 78%,rgba(99,179,237,.95) 84%,transparent 100%);animation:spin 5s linear infinite;z-index:-1}
+.glow::after{content:"";position:absolute;inset:-34px 0;border-radius:40px;background:radial-gradient(closest-side,rgba(99,179,237,.28),transparent);z-index:-2;filter:blur(24px)}
+@keyframes spin{to{--ang:360deg}}
+.player{background:#000;border-radius:18.5px;overflow:hidden;box-shadow:0 50px 100px rgba(0,0,0,.55)}
+.p-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:#0b1424;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px;color:var(--muted)}
+.p-bar .t{display:flex;align-items:center;gap:10px;min-width:0;color:var(--cream);font-weight:600}
+.p-bar .t>span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dots{display:flex;gap:6px;flex:none}.dots i{width:10px;height:10px;border-radius:50%}
+.dots i:first-child{background:#e0675b}.dots i:nth-child(2){background:#e7b24f}.dots i:nth-child(3){background:#4fb37c}
+.dur{font-family:var(--mono);font-size:11.5px;color:var(--sky-soft);background:rgba(99,179,237,.12);border-radius:999px;padding:3px 10px;flex:none}
+.stage{position:relative;aspect-ratio:16/9;max-width:100%;background:#000}
+.stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.poster{position:absolute;inset:0;display:block;width:100%;height:100%;cursor:pointer;background:#000;text-decoration:none;overflow:hidden}
+.poster img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--ease),filter .4s}
+.poster::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,17,31,0) 45%,rgba(6,17,31,.85));pointer-events:none}
+.poster:hover img{transform:scale(1.03);filter:brightness(1.06)}
+.cap{position:absolute;left:20px;right:20px;bottom:18px;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:14px;text-align:left}
+.cap b{font-family:var(--display);font-size:clamp(18px,2.4vw,26px);font-weight:600;color:#fff;line-height:1.15;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.cap span{font-size:12.5px;color:var(--sky-soft);white-space:nowrap}
+.watch-cta{position:absolute;z-index:3;right:18px;top:16px;display:inline-flex;align-items:center;gap:8px;background:var(--warn);color:#1d1606;border-radius:999px;padding:8px 14px;font-size:12.5px;font-weight:700;box-shadow:0 10px 26px rgba(0,0,0,.35);animation:nudge 2.6s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:none}50%{transform:translateY(-3px)}}
+.p-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;background:#0b1424;font-size:13.5px;color:var(--muted)}
+.p-foot .who{display:flex;align-items:center;gap:10px}
+.p-foot img{width:30px;height:30px;border-radius:50%;object-fit:cover;object-position:50% 20%;border:1.5px solid var(--sky)}
+.p-foot b{color:var(--cream);font-weight:600}
+.mark{font:inherit;font-size:13px;font-weight:600;color:var(--sky-ink);background:var(--sky);border:0;border-radius:999px;padding:9px 16px;cursor:pointer;transition:transform .2s var(--ease),background .2s}
+.mark:hover{transform:translateY(-1px)}
+.mark[aria-pressed="true"]{background:rgba(127,214,174,.16);color:var(--ok-soft);box-shadow:inset 0 0 0 1px rgba(127,214,174,.45)}
+
+.plist{border:1px solid var(--line-2);border-radius:18px;background:rgba(255,255,255,.025);overflow:hidden;min-width:0}
+.plist-h{padding:16px 18px;border-bottom:1px solid var(--line-2);display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.plist-h b{color:var(--cream);font-size:14.5px}
+.pitem{display:grid;grid-template-columns:118px minmax(0,1fr);gap:12px;padding:14px 16px;border:0;width:100%;text-align:left;background:none;color:inherit;font:inherit;cursor:pointer;border-bottom:1px solid var(--line-2);transition:background .25s;position:relative}
+.pitem:last-child{border-bottom:0}
+.pitem:hover{background:rgba(99,179,237,.06)}
+.pitem[aria-current="true"]{background:rgba(99,179,237,.1)}
+.pitem[aria-current="true"]::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:0 3px 3px 0;background:var(--sky)}
+.thumb{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:16/9;max-width:100%;background:#000;display:block}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb em{position:absolute;right:6px;bottom:6px;font-style:normal;font-family:var(--mono);font-size:10px;background:rgba(0,0,0,.75);color:#fff;border-radius:4px;padding:1px 5px}
+.eq{position:absolute;left:6px;bottom:6px;display:none;gap:2px;align-items:flex-end;height:12px}
+.pitem[aria-current="true"] .eq{display:flex}
+.eq i{width:3px;background:var(--sky);animation:eq 1s ease-in-out infinite}
+.eq i:nth-child(2){animation-delay:.2s}.eq i:nth-child(3){animation-delay:.4s}
+@keyframes eq{0%,100%{height:4px}50%{height:12px}}
+.pitem .k{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--sky)}
+.pitem .k.must{color:var(--warn)}
+.pitem b{display:block;font-size:14px;font-weight:600;line-height:1.3;margin-top:3px}
+.pitem small{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+.seen{display:none;color:var(--ok-soft)}
+.pitem.watched .seen{display:inline}
+.plist-f{padding:14px 18px;font-size:12.5px;color:var(--dim);border-top:1px solid var(--line-2)}
+
+.sec{padding-block:96px;display:grid;gap:18px}
+.sec-head{display:grid;gap:14px;max-width:660px}
+.sec h2{font-size:clamp(30px,4.4vw,46px);line-height:1.08}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}
+.step{border:1px solid var(--line-2);border-radius:18px;padding:24px;background:rgba(255,255,255,.025);display:grid;gap:12px;align-content:start;min-width:0;position:relative;overflow:hidden;cursor:pointer;transition:border-color .3s,background .3s,transform .4s var(--ease)}
+.step:hover{border-color:rgba(99,179,237,.45);transform:translateY(-3px)}
+.step .num{font-family:var(--display);font-size:56px;font-weight:600;line-height:1;color:rgba(99,179,237,.18);transition:color .3s}
+.step h3{font-size:20px;line-height:1.25}
+.step p{color:var(--muted);font-size:14.5px}
+.step input{position:absolute;opacity:0;width:1px;height:1px}
+.box-ck{position:absolute;right:20px;top:22px;width:28px;height:28px;border-radius:8px;border:1.5px solid rgba(169,184,205,.45);display:grid;place-items:center;transition:all .25s var(--ease)}
+.box-ck svg{opacity:0;transform:scale(.5);transition:all .25s var(--ease)}
+.step.done{border-color:rgba(127,214,174,.5);background:rgba(47,158,110,.08)}
+.step.done .box-ck{background:var(--ok-soft);border-color:var(--ok-soft)}
+.step.done .box-ck svg{opacity:1;transform:none}
+.step.done .num{color:rgba(127,214,174,.4)}
+.step:focus-within{outline:3px solid var(--sky-soft);outline-offset:3px}
+.progress{display:flex;align-items:center;gap:16px;margin-top:18px;flex-wrap:wrap}
+.meter{flex:1;min-width:160px;height:8px;border-radius:4px;background:var(--line-2);overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sky),var(--ok-soft));transition:width .6s var(--ease)}
+.progress b{font-size:14px}
+.allset{display:none;align-items:center;gap:10px;color:var(--ok-soft);font-weight:600;font-size:15px}
+.allset.show{display:flex;animation:fu .5s var(--ease)}
+.resched{margin-top:20px;display:flex;align-items:center;gap:12px;padding:16px 20px;border-radius:14px;border:1px dashed rgba(242,196,109,.45);background:rgba(242,196,109,.06);font-size:14.5px;color:var(--cream)}
+.resched svg{flex:none}
+
+.duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:24px}
+.box{border:1px solid var(--line-2);border-radius:18px;padding:24px;background:rgba(255,255,255,.025);display:grid;gap:12px;align-content:start;min-width:0}
+.box .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky)}
+.who2{display:flex;gap:14px;align-items:center}
+.who2 img{width:68px;height:68px;border-radius:50%;object-fit:cover;object-position:50% 20%;border:2px solid var(--sky);flex:none}
+.who2 b{display:block;font-size:17px}
+.who2 span{font-size:13px;color:var(--muted)}
+.box p{color:var(--muted);font-size:14.5px}
+.box .big{font-size:22px;font-weight:600;color:var(--cream)}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font:inherit;font-size:12.5px;color:var(--sky-soft);background:none;border:1px solid var(--line-2);border-radius:999px;padding:7px 13px;cursor:pointer;transition:border-color .2s,background .2s}
+.pill:hover{border-color:var(--sky);background:rgba(99,179,237,.1)}
+
+.recap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line-2);border-radius:18px;margin-top:24px;overflow:hidden}
+.recap div{padding:22px;border-left:1px solid var(--line-2);display:grid;gap:6px;min-width:0}
+.recap div:first-child{border-left:0}
+.recap .t{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky)}
+.recap b{font-family:var(--display);font-size:19px;font-weight:600}
+.recap p{font-size:13.5px;color:var(--muted)}
+
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(6,17,31,.95);border-top:1px solid var(--line-2);display:none;transform:translateY(110%);transition:transform .35s var(--ease)}
+.mbar.show{transform:none}
+.mbar a{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--warn);color:#1d1606;font-weight:700;border-radius:999px;padding:13px 18px;text-decoration:none;font-size:15px}
+
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-block:22px 28px;border-top:1px solid var(--line-2);font-size:12.5px;color:var(--dim)}
+footer a{text-decoration:none} footer a:hover{color:var(--cream)}
+
+@media (max-width:980px){
+  .theater{grid-template-columns:minmax(0,1fr)}
+  .pitems{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pitem{grid-template-columns:minmax(0,1fr);border-bottom:0;border-right:1px solid var(--line-2)}
+  .pitem:last-child{border-right:0}
+  .steps{grid-template-columns:minmax(0,1fr)}
+  .recap{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .recap div:nth-child(3){border-left:0}
+  .recap div:nth-child(n+3){border-top:1px solid var(--line-2)}
+}
+@media (max-width:640px){
+  .status{display:none}
+  .sec{padding-block:72px}
+  .duo{grid-template-columns:minmax(0,1fr)}
+  .recap{grid-template-columns:minmax(0,1fr)}
+  .recap div{border-left:0;border-top:1px solid var(--line-2)}
+  .recap div:first-child{border-top:0}
+  .stepper b{font-size:11px}
+  .stepper span{font-size:8.5px;letter-spacing:.06em}
+  .cap{left:14px;right:14px;bottom:12px}
+  .cap span{display:none}
+  .watch-cta{right:10px;top:10px;font-size:11.5px;padding:6px 11px}
+  .dots{display:none}
+  .mbar{display:block}
+  .intro{padding-block:40px 28px}
+  .pitem{padding:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .w,.fade-up,.rv{opacity:1!important;transform:none!important;filter:none!important}
+  .stepper::after{width:50%}
+  .reserved .tk{stroke-dashoffset:0}
+}
+</style>
+
+<header class="band hdr">
+  <div class="wrap">
+    <a class="logo" href="https://go.qhauz.com/dealer-leads" aria-label="Qhauz home">Qhauz<span>.</span></a>
+    <span class="status"><i></i>Your time is reserved</span>
+  </div>
+</header>
+
+<main>
+<section class="band top" aria-labelledby="h">
+  <div class="aurora" aria-hidden="true"><i></i><i></i></div>
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap intro">
+    <span class="reserved fade-up" style="--d:.1s"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7fd6ae" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" opacity=".4"/><path class="tk" d="M7.5 12.5l3 3 6-6.5"/></svg><span id="resv">Your time is reserved</span></span>
+    <p class="eyebrow warn fade-up" style="--d:.25s">Step 3 of 3 — Your booking is not complete yet</p>
+    <h1 id="h"><span class="w" style="--i:0">Wait!</span> <span class="w" style="--i:1">Watch</span> <span class="w" style="--i:2">This</span> <span class="w" style="--i:3">Short</span> <span class="w" style="--i:4">Video</span> <em><span class="w" style="--i:5">Before</span> <span class="w" style="--i:6">Your</span> <span class="w" style="--i:7">Call.</span></em></h1>
+    <p class="lede fade-up" style="--d:.9s">Your time is reserved, but there's one more step. This short video from Jeremy explains how Qhauz started and what we'll cover on the call. Dealers who skip it get far less out of the call.</p>
+    <ol class="stepper fade-up" style="--d:1s" id="stepper" aria-label="Progress">
+      <li><span class="n" aria-hidden="true">✓</span><b>Survey</b><span>Done</span></li>
+      <li><span class="n" aria-hidden="true">✓</span><b>Pick a time</b><span>Done</span></li>
+      <li class="now" aria-current="step"><span class="n" id="stepN">▶</span><b>Watch the video</b><span id="stepS">Do this now</span></li>
+      <li class="later"><span class="n">04</span><b>Ad plan call</b><span>20 minutes</span></li>
+    </ol>
+  </div>
+
+  <div class="wrap theater">
+    <div class="glow fade-up" style="--d:1.15s">
+      <div class="player">
+        <div class="p-bar"><span class="t"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span id="pTitle">Why Qhauz?</span></span><span class="dur" id="pDur">1 min 35 sec</span></div>
+        <div class="stage" id="stage"></div>
+        <div class="p-foot">
+          <span class="who"><img src="__JEREMY__" alt="" width="30" height="30"><span>From <b>Jeremy Pine</b>, founder of Qhauz</span></span>
+          <button type="button" class="mark" id="markBtn" aria-pressed="false">Mark as watched</button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="plist fade-up" style="--d:1.3s" aria-label="Videos">
+      <div class="plist-h"><b>Before your call</b><span id="plCount">0 of 2 watched</span></div>
+      <div class="pitems">
+        <button type="button" class="pitem" data-i="0" aria-current="true">
+          <span class="thumb"><img src="__WHY__" alt="" loading="lazy"><em>1:35</em><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span>
+          <span><span class="k must">Must watch · 1</span><b>Why Qhauz?</b><small>How Qhauz started and what we'll cover on the call <span class="seen">· ✓ Watched</span></small></span>
+        </button>
+        <button type="button" class="pitem" data-i="1" aria-current="false">
+          <span class="thumb"><img src="__LEADS__" alt="" loading="lazy"><em>1:00</em><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span>
+          <span><span class="k">Common questions · 2</span><b>Stop Leads Going Cold, Answer Faster</b><small>How your leads get worked <span class="seen">· ✓ Watched</span></small></span>
+        </button>
+      </div>
+      <p class="plist-f">Both videos together take under 3 minutes.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="band" style="background:var(--navy)" aria-labelledby="next-h">
+  <div class="wrap sec">
+    <div class="sec-head rv">
+      <p class="eyebrow">Before your call</p>
+      <h2 id="next-h">Your <em>Next Steps</em></h2>
+      <p class="lede">Tap each one as you finish it.</p>
+    </div>
+    <div class="steps" id="steps">
+      <label class="step rv" style="--d:0s"><input type="checkbox" data-k="video"><span class="box-ck" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#071427" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span class="num">01</span><h3>Watch the video</h3><p>Watch the video above now. It's about a minute and a half.</p></label>
+      <label class="step rv" style="--d:.1s"><input type="checkbox" data-k="email"><span class="box-ck" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#071427" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span class="num">02</span><h3>Save your meeting details</h3><p>Open your confirmation email and save your meeting details.</p></label>
+      <label class="step rv" style="--d:.2s"><input type="checkbox" data-k="numbers"><span class="box-ck" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#071427" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span class="num">03</span><h3>Write down your numbers</h3><p>Write down your monthly car count and current lead sources so we can build your plan on the call.</p></label>
+    </div>
+    <div class="progress rv">
+      <div class="meter" aria-hidden="true"><i id="meter"></i></div><b id="stepsCt">0 of 3 done</b>
+      <span class="allset" id="allset" role="status"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>You're ready for your call.</span>
+    </div>
+    <p class="resched rv"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f2c46d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span><b>Can't make it?</b> Use the reschedule link in your email so someone else can take your spot.</span></p>
+  </div>
+</section>
+
+<section class="band" style="background:var(--navy-deep)" aria-labelledby="who-h">
+  <div class="wrap sec">
+    <div class="sec-head rv">
+      <p class="eyebrow">Who you're meeting</p>
+      <h2 id="who-h">Built inside a <em>dealership.</em></h2>
+    </div>
+    <div class="duo">
+      <div class="box rv">
+        <div class="who2"><img src="__JEREMY__" alt="Jeremy Pine" width="68" height="68"><div><b>Jeremy Pine</b><span>Founder, Qhauz · 16+ years inside dealerships</span></div></div>
+        <p>Jeremy has worked nearly every job in the building, at large dealership groups and independent stores alike. He built Qhauz to solve the lead problems his own dealership faced.</p>
+      </div>
+      <div class="box rv" style="--d:.1s">
+        <p class="k">Save Jeremy's number</p>
+        <p class="big" id="ph">(913) 407-7430</p>
+        <p>Save it so you can reach Jeremy directly if anything changes before your call. Email: <b style="color:var(--cream)" id="em">jeremy@qhauz.com</b></p>
+        <div class="row"><button type="button" class="pill" data-copy="ph">Copy number</button><button type="button" class="pill" data-copy="em">Copy email</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="background:var(--navy)" aria-labelledby="recap-h">
+  <div class="wrap sec">
+    <div class="sec-head rv">
+      <p class="eyebrow">What we'll build</p>
+      <h2 id="recap-h">A lead system that <em>works while you sell.</em></h2>
+    </div>
+    <div class="recap rv">
+      <div><span class="t">// Acquisition</span><b>Targeted Lead Generation</b><p>Facebook &amp; Instagram ads built around your dealership, inventory, people, and unique offers.</p></div>
+      <div><span class="t">// Follow-up</span><b>Automated CRM Follow-Up</b><p>Instant SMS and email responses so you never lose a lead to a faster competitor.</p></div>
+      <div><span class="t">// Appointments</span><b>Appointment Generation</b><p>A system designed to move shoppers from their phones to your showroom floor.</p></div>
+      <div><span class="t">// Reporting</span><b>Full Transparency</b><p>See exactly which ads turn into conversations, appointments, test drives, and sales.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="band" style="background:var(--navy-deep)">
+  <div class="wrap"><span>© 2026 Qhauz</span><a href="https://sms.qhauz.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a></div>
+</footer>
+
+<div class="mbar" id="mbar"><a href="#h">▶ Watch Jeremy's video first</a></div>
+
+<script>
+(function(){
+  const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const EMBED = __EMBED__; // true on go.qhauz.com (live Loom players); false in the preview
+  const $ = id=>document.getElementById(id);
+  const esc = s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const IMGS = [document.querySelector('.pitem[data-i="0"] img').getAttribute("src"), document.querySelector('.pitem[data-i="1"] img').getAttribute("src")];
+  const V = [
+    {id:"6fe856140c4e466f866c565566cec185", title:"Why Qhauz?", dur:"1 min 35 sec"},
+    {id:"c7948b449c8841ada4686a9c247cce10", title:"Stop Leads Going Cold, Answer Faster", dur:"1 min"}
+  ];
+  const KEY="qhauz-ty-v2"; let S={watched:[false,false],steps:{}};
+  try{const s=JSON.parse(localStorage.getItem(KEY)||"null"); if(s&&Array.isArray(s.watched)){S=s; S.steps=S.steps||{};} }catch(e){}
+  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}};
+
+  const q=new URLSearchParams(location.search), first=(q.get("first_name")||"").trim().slice(0,40);
+  if(first) $("resv").textContent="Thanks, "+first+". Your time is reserved";
+
+  let cur=0;
+  function load(i, play){
+    cur=i; const v=V[i];
+    $("pTitle").textContent=v.title; $("pDur").textContent=v.dur;
+    document.querySelectorAll(".pitem").forEach(b=>b.setAttribute("aria-current",String(+b.dataset.i===i)));
+    const stage=$("stage");
+    if(EMBED){
+      stage.innerHTML='<iframe src="https://www.loom.com/embed/'+v.id+'?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true'+(play?'&autoplay=1':'')+'" title="'+esc(v.title)+'" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+    }else{
+      stage.innerHTML='<a class="poster" href="https://www.loom.com/share/'+v.id+'" target="_blank" rel="noopener" aria-label="Play '+esc(v.title)+' (opens Loom)">'
+        +'<img src="'+IMGS[i]+'" alt="">'
+        +(i===0&&!S.watched[0]?'<span class="watch-cta">▶ Watch first</span>':'')
+        +'<span class="cap"><b>'+esc(v.title)+'</b><span>'+esc(v.dur)+' · Loom</span></span></a>';
+      stage.querySelector(".poster").addEventListener("click",()=>setWatched(i,true));
+    }
+    syncMark();
+  }
+  function syncMark(){const b=$("markBtn");const w=!!S.watched[cur];b.setAttribute("aria-pressed",String(w));b.textContent=w?"✓ Watched":"Mark as watched";}
+  function setWatched(i,val){ S.watched[i]=val; if(i===0) S.steps.video=val; save(); render(); }
+  function render(){
+    const n=S.watched.filter(Boolean).length; $("plCount").textContent=n+" of 2 watched";
+    document.querySelectorAll(".pitem").forEach(b=>b.classList.toggle("watched",!!S.watched[+b.dataset.i]));
+    $("stepper").classList.toggle("complete",!!S.watched[0]);
+    $("stepN").textContent=S.watched[0]?"✓":"▶"; $("stepS").textContent=S.watched[0]?"Done":"Do this now";
+    const boxes=[...document.querySelectorAll("#steps input")];
+    boxes.forEach(c=>{c.checked=!!S.steps[c.dataset.k]; c.closest(".step").classList.toggle("done",c.checked);});
+    const d=boxes.filter(x=>x.checked).length;
+    $("meter").style.width=(d/boxes.length*100)+"%"; $("stepsCt").textContent=d+" of "+boxes.length+" done";
+    $("allset").classList.toggle("show",d===boxes.length);
+    const cta=document.querySelector(".watch-cta"); if(cta&&S.watched[0])cta.remove();
+    syncMark();
+  }
+  document.querySelectorAll(".pitem").forEach(b=>b.addEventListener("click",()=>{load(+b.dataset.i,true); if(innerWidth<981) $("stage").scrollIntoView({behavior:RM?"auto":"smooth",block:"center"});}));
+  $("markBtn").addEventListener("click",()=>setWatched(cur,!S.watched[cur]));
+  document.querySelectorAll("#steps input").forEach(c=>c.addEventListener("change",()=>{S.steps[c.dataset.k]=c.checked; if(c.dataset.k==="video") S.watched[0]=c.checked; save(); render();}));
+  load(0,false); render();
+
+  const els=document.querySelectorAll(".rv");
+  if(!("IntersectionObserver" in window)||RM){els.forEach(e=>e.classList.add("on"));}
+  else{const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("on");io.unobserve(x.target);}}),{rootMargin:"0px 0px -8% 0px"});els.forEach(e=>io.observe(e));}
+  const mbar=$("mbar"), stage=$("stage");
+  addEventListener("scroll",()=>{const r=stage.getBoundingClientRect();mbar.classList.toggle("show",r.bottom<0&&!S.watched[0]);},{passive:true});
+
+  document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",()=>{
+    const el=$(b.dataset.copy), orig=b.textContent;
+    const ok=()=>{b.textContent="Copied ✓";setTimeout(()=>b.textContent=orig,1500);};
+    const fb=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Selected, press copy";setTimeout(()=>b.textContent=orig,2000);};
+    try{navigator.clipboard.writeText(el.textContent).then(ok,fb);}catch(e){fb();}
+  }));
+})();
+</script>

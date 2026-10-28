@@ -1,0 +1,348 @@
+<title>Qhauz Dealer Leads</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: same single-column dealer funnel as go.qhauz.com/dealer-leads — navy bands, survey card under the hero, then proof, services, Jeremy, steps, CTA. Single dark look by design (matches the live brand). */
+:root{
+  --navy:#0a1a33; --navy-2:#0c2140; --navy-deep:#081428;
+  --cream:#f4efe4; --sky:#63b3ed; --sky-soft:#9fd0f5;
+  --muted:#a7b6cc; --line:rgba(99,179,237,.16); --line-2:rgba(167,182,204,.18);
+  --card:#ffffff; --ink:#14223a; --ink-2:#4b5a70; --field:#f3f6fa; --field-line:#d5dde8;
+  --pick:#e8f3fc; --ok:#1f8f5f; --err:#c2413a;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Inter",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--navy);color:var(--cream);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:780px;margin:0 auto}
+.band{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band.grid-bg{background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;background-position:center -1px}
+.band.deep{background:var(--navy-deep)}
+.band.mid{background:var(--navy-2)}
+h1,h2,h3{font-family:var(--display);font-weight:600;color:var(--cream);text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1 em,h2 em{font-style:italic;color:var(--sky);font-weight:500}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);display:flex;align-items:center;gap:8px;margin:0}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sky);box-shadow:0 0 0 3px rgba(99,179,237,.25)}
+.lede{color:var(--muted);max-width:56ch;margin:0}
+
+/* top bar */
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px;border-bottom:1px solid var(--line-2)}
+.logo{font-family:var(--display);font-weight:600;font-size:22px;text-decoration:none}
+.logo span{color:var(--sky)}
+.btn-ghost{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--sky-soft);border:1px solid var(--sky);padding:10px 14px;border-radius:3px;text-decoration:none;white-space:nowrap}
+.btn-ghost:hover,.btn-ghost:focus-visible{background:rgba(99,179,237,.12)}
+
+/* hero */
+.hero{padding-block:56px 40px;display:grid;gap:18px}
+.hero h1{font-size:clamp(38px,7vw,62px);line-height:1.04}
+.hero .sub{font-size:18px;font-weight:500;margin:0}
+.steptag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--sky);margin:10px 0 0}
+.steptag b{color:var(--muted);font-weight:500}
+
+/* survey */
+.survey{background:var(--card);color:var(--ink);border-radius:10px;box-shadow:0 18px 50px rgba(0,0,0,.35);max-width:620px;margin:0 auto 56px;overflow:hidden}
+.sv-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 22px 0;font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.sv-head .who{display:flex;align-items:center;gap:8px}
+.sv-head img{width:26px;height:26px;border-radius:50%;object-fit:cover}
+.bar{height:4px;background:#e6ecf3;margin:12px 22px 0;border-radius:2px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--sky);width:0;transition:width .3s ease}
+.sv-body{padding:20px 22px 8px;min-height:228px}
+.q{font-weight:600;font-size:17px;line-height:1.35;margin:0 0 4px;color:var(--ink)}
+.q small{display:block;font-weight:400;font-size:13px;color:var(--ink-2);margin-top:4px}
+.opts{display:grid;gap:10px;margin-top:14px}
+.opts.two{grid-template-columns:1fr 1fr}
+.opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;font:inherit;font-size:15px;font-weight:500;color:var(--ink);background:var(--field);border:1.5px solid var(--field-line);border-radius:8px;padding:13px 14px;cursor:pointer;min-height:48px}
+.opt::before{content:"";width:16px;height:16px;border-radius:50%;border:1.5px solid #9aaabd;flex:none;background:#fff}
+.opt:hover{border-color:var(--sky)}
+.opt:focus-visible{outline:3px solid rgba(99,179,237,.5);outline-offset:1px}
+.opt[aria-pressed="true"]{background:var(--pick);border-color:var(--sky)}
+.opt[aria-pressed="true"]::before{border-color:var(--sky);background:radial-gradient(circle,var(--sky) 45%,#fff 50%)}
+label.lbl{display:block;font-size:13px;font-weight:600;color:var(--ink);margin:16px 0 6px}
+.in{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--field);border:1.5px solid var(--field-line);border-radius:8px;padding:12px 13px;min-height:48px}
+.in:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px rgba(99,179,237,.25);background:#fff}
+.in.bad{border-color:var(--err)}
+.err{color:var(--err);font-size:13px;margin:6px 0 0;min-height:1em}
+.consent{display:grid;gap:10px;margin-top:14px}
+.consent label{display:grid;grid-template-columns:20px 1fr;gap:10px;font-size:12px;line-height:1.5;color:var(--ink-2);cursor:pointer}
+.consent input{width:18px;height:18px;margin:2px 0 0;accent-color:#1f6fc5}
+.legal{font-size:12px;color:var(--ink-2);margin:12px 0 0}
+.legal a{color:#1f6fc5}
+.sv-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 22px;border-top:1px solid #e6ecf3}
+.back{font:inherit;font-size:14px;font-weight:600;color:#1f6fc5;background:none;border:0;padding:8px 0;cursor:pointer}
+.back[hidden]{display:none}
+.next{font:inherit;font-size:15px;font-weight:600;color:#fff;background:#1f6fc5;border:0;border-radius:8px;padding:12px 20px;cursor:pointer;margin-left:auto;min-height:46px}
+.next:hover{background:#185ba6}
+.next:focus-visible,.back:focus-visible{outline:3px solid rgba(99,179,237,.5);outline-offset:2px}
+.done h3{font-family:var(--display);color:var(--ink);font-size:24px;margin:0 0 8px}
+.done p{margin:0 0 12px;color:var(--ink-2);font-size:15px}
+.done ul{margin:0 0 16px;padding-left:18px;color:var(--ink-2);font-size:14px;display:grid;gap:4px}
+.cta-cal{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#fff;background:#1f6fc5;border-radius:8px;padding:13px 20px;text-decoration:none}
+.cta-cal:hover{background:#185ba6}
+.note{font-size:12px;color:var(--ink-2);margin-top:12px}
+
+/* proof strip */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);margin-bottom:72px}
+.stat{padding:20px 16px;border-left:1px solid var(--line-2);min-width:0}
+.stat:first-child{border-left:0}
+.stat b{display:block;font-family:var(--display);font-weight:600;font-size:clamp(24px,3.4vw,32px);line-height:1.1;color:var(--sky)}
+.stat span{font-size:13px;color:var(--muted);line-height:1.45;display:block;margin-top:6px}
+
+/* sections */
+.sec{padding-block:72px;display:grid;gap:16px}
+.sec h2{font-size:clamp(30px,5vw,44px);line-height:1.1}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.svc{background:rgba(255,255,255,.03);border:1px solid var(--line-2);border-radius:4px;padding:22px;min-width:0}
+.svc .tag{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin:0 0 8px}
+.svc h3{font-size:20px;margin:0 0 6px}
+.svc p{margin:0;color:var(--muted);font-size:14px}
+.about{display:grid;grid-template-columns:250px 1fr;gap:40px;align-items:start}
+.about img{width:100%;border-radius:4px;border:1px solid var(--line-2);display:block}
+.about p{color:var(--muted);margin:0}
+.about .sig{font-family:var(--display);font-style:italic;color:var(--cream);font-size:17px}
+.about .txt{display:grid;gap:14px;min-width:0}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;border-top:1px solid var(--line-2);padding-top:28px;margin-top:20px;list-style:none;padding-left:0}
+.steps li{min-width:0}
+.steps .n{font-family:var(--mono);font-size:11px;color:var(--sky)}
+.steps h3{font-size:18px;margin:6px 0 4px}
+.steps p{margin:0;color:var(--muted);font-size:13px}
+.final{text-align:center;padding-block:80px;display:grid;gap:16px;justify-items:center;background:radial-gradient(ellipse at top,rgba(99,179,237,.12),transparent 60%)}
+.final h2{font-size:clamp(30px,5vw,44px);max-width:16ch}
+.btn-main{display:inline-block;background:linear-gradient(#7cc1f2,#4f9fdc);color:#0a1a33;font-weight:600;padding:14px 22px;border-radius:4px;text-decoration:none}
+.btn-main:focus-visible{outline:3px solid var(--sky-soft);outline-offset:3px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;padding-block:22px;font-size:12px;color:var(--muted);border-top:1px solid var(--line-2);flex-wrap:wrap}
+
+@media (max-width:720px){
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(3){border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line-2)}
+  .cards{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr;gap:24px}
+  .about img{max-width:240px}
+  .steps{grid-template-columns:1fr 1fr}
+  .opts.two{grid-template-columns:1fr}
+  .top .btn-ghost{padding:9px 10px;font-size:10px}
+}
+</style>
+
+<header class="band grid-bg">
+  <div class="wrap">
+    <nav class="top">
+      <a class="logo" href="#survey">Qhauz<span>.</span></a>
+      <a class="btn-ghost" href="#survey">Get your store's ad plan</a>
+    </nav>
+    <section class="hero">
+      <p class="eyebrow">For independent &amp; used car dealership owners</p>
+      <h1>Stop Buying the Same Leads <em>Every Other Dealer Gets.</em></h1>
+      <p class="sub">Ads run for your store only, so the buyers are yours.</p>
+      <p class="lede">Every lead gets answered in seconds, day or night. See how it works for your store on a 20-minute screen share.</p>
+      <p class="steptag">Step 1 of 3 <b>· Answer a few quick questions below, then pick a time.</b></p>
+    </section>
+
+    <form class="survey" id="survey" novalidate aria-label="Dealer survey">
+      <div class="sv-head">
+        <span class="who"><img src="__JEREMY__" alt="">Jeremy reads every answer</span>
+        <span id="count">Question 1 of 6</span>
+      </div>
+      <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+      <div class="sv-body" id="body" aria-live="polite"></div>
+      <div class="sv-foot" id="foot">
+        <button type="button" class="back" id="back" hidden>← Go back</button>
+        <button type="submit" class="next" id="next">Next →</button>
+      </div>
+    </form>
+
+    <div class="stats">
+      <div class="stat"><b>16+ yrs</b><span>Inside dealerships, from big groups to independent stores</span></div>
+      <div class="stat"><b>Seconds</b><span>To answer every new lead, day or night</span></div>
+      <div class="stat"><b>Your store only</b><span>Ads built around your inventory, people and offers</span></div>
+      <div class="stat"><b>20 min</b><span>Screen share to walk through your store's ad plan</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="band mid">
+  <div class="wrap sec">
+    <p class="eyebrow">What we build</p>
+    <h2>A lead system that <em>works while you sell.</em></h2>
+    <p class="lede">Ads, follow-up and tracking built around your dealership, so more shoppers turn into appointments on your lot.</p>
+    <div class="cards">
+      <div class="svc"><p class="tag">// Acquisition</p><h3>Targeted Lead Generation</h3><p>Facebook &amp; Instagram ads built around your dealership, inventory, people, and unique offers.</p></div>
+      <div class="svc"><p class="tag">// Follow-up</p><h3>Automated CRM Follow-Up</h3><p>Instant SMS and email responses so you never lose a lead to a faster competitor.</p></div>
+      <div class="svc"><p class="tag">// Appointments</p><h3>Appointment Generation</h3><p>A system designed to move shoppers from their phones to your showroom floor.</p></div>
+      <div class="svc"><p class="tag">// Reporting</p><h3>Full Transparency</h3><p>See exactly which ads turn into conversations, appointments, test drives, and sales.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band deep">
+  <div class="wrap sec about">
+    <img src="__JEREMY__" alt="Jeremy Pine, founder of Qhauz" width="460" height="497">
+    <div class="txt">
+      <p class="eyebrow">Who's building this</p>
+      <h2>Built inside a <em>dealership.</em></h2>
+      <p>Jeremy has spent more than 16 years in the automotive industry, at large dealership groups and independent stores alike. He's worked nearly every job in the building, so he knows firsthand where leads come from, where they get lost, and what it takes to turn them into customers.</p>
+      <p>He built Qhauz to solve the lead problems his own dealership faced: not enough real, quality leads, and too many slipping through the cracks. Now he brings that same hands-on approach to every store Qhauz works with.</p>
+      <p class="sig">Jeremy Pine, Qhauz</p>
+    </div>
+  </div>
+</section>
+
+<section class="band mid">
+  <div class="wrap sec">
+    <p class="eyebrow">How it works</p>
+    <h2>Five steps. <em>No guesswork.</em></h2>
+    <p class="lede">You always know where things stand, from the first question to your first leads.</p>
+    <ol class="steps">
+      <li><span class="n">01</span><h3>Survey</h3><p>Answer a few quick questions about your store and your goals.</p></li>
+      <li><span class="n">02</span><h3>Ad Plan Call</h3><p>A 20-minute screen share built around your store.</p></li>
+      <li><span class="n">03</span><h3>Capture</h3><p>Targeted Facebook &amp; Instagram campaigns built for your dealership.</p></li>
+      <li><span class="n">04</span><h3>Connect</h3><p>Every lead flows into your CRM with instant follow-up and staff alerts.</p></li>
+      <li><span class="n">05</span><h3>Convert</h3><p>Lead source, conversation and follow-up in one place, so more turn into sales.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="band deep">
+  <div class="wrap final">
+    <p class="eyebrow">Ready when you are</p>
+    <h2>Ready to Build a Better <em>Dealer Lead System?</em></h2>
+    <p class="lede">Start with a few quick questions, then pick a time for your store's ad plan.</p>
+    <a class="btn-main" href="#survey">Book Your Store's Ad Plan</a>
+  </div>
+</section>
+
+<footer class="band deep">
+  <div class="wrap"><span>© 2026 Qhauz</span><a href="https://sms.qhauz.com/" target="_blank" rel="noopener">Privacy Policy</a></div>
+</footer>
+
+<script>
+(function(){
+  const CAL = "https://go.qhauz.com/calendar-page-119534";
+  const A = {sales:"", website:"", role:"", roleOther:"", name:"", email:"", phone:"", smsCare:false, smsMkt:false};
+  const Q = [
+    {id:"sales", type:"choice", q:"How many additional vehicle sales could your dealership handle each month?", opts:["5-10","10-20","20-30","30+"], two:true},
+    {id:"website", type:"text", q:"Dealership Website", hint:"So Jeremy can look at your inventory before the call.", input:{type:"url", ph:"https://yourwebsite.com", ac:"url", im:"url"}},
+    {id:"role", type:"choice", q:"What is your role at the dealership?", opts:["Owner","Manager (GM, Sales, Used Car, etc.)","Other"]},
+    {id:"name", type:"text", q:"Full Name", input:{type:"text", ph:"Enter your full name", ac:"name"}},
+    {id:"email", type:"text", q:"Email", hint:"Your Google Meet link and confirmation go here.", input:{type:"email", ph:"your@email.com", ac:"email", im:"email"}},
+    {id:"phone", type:"phone", q:"Phone", hint:"Reminders for your call come by text, so you don't miss it."}
+  ];
+  let i = 0;
+  const body = document.getElementById("body"), bar = document.getElementById("bar"),
+        count = document.getElementById("count"), back = document.getElementById("back"),
+        next = document.getElementById("next"), foot = document.getElementById("foot"),
+        form = document.getElementById("survey");
+
+  function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+
+  function render(){
+    const s = Q[i];
+    count.textContent = "Question " + (i+1) + " of " + Q.length;
+    bar.style.width = (i/Q.length*100) + "%";
+    back.hidden = i === 0;
+    next.textContent = i === Q.length-1 ? "See available times →" : "Next →";
+    let h = '<p class="q" id="qt">' + esc(s.q) + ' *' + (s.hint ? '<small>' + esc(s.hint) + '</small>' : '') + '</p>';
+    if (s.type === "choice"){
+      h += '<div class="opts' + (s.two ? ' two' : '') + '" role="group" aria-labelledby="qt">';
+      s.opts.forEach((o,k)=>{ h += '<button type="button" class="opt" id="opt-'+s.id+'-'+k+'" data-v="'+esc(o)+'" aria-pressed="'+(A[s.id]===o)+'">'+esc(o)+'</button>'; });
+      h += '</div>';
+      if (s.id === "role") h += '<div id="otherWrap"' + (A.role==="Other"?'':' hidden') + '><label class="lbl" for="f-roleOther">Type your role</label><input class="in" id="f-roleOther" type="text" placeholder="Type your role" value="'+esc(A.roleOther)+'"></div>';
+    } else if (s.type === "text"){
+      h += '<label class="lbl visually" for="f-'+s.id+'" style="position:absolute;left:-9999px">'+esc(s.q)+'</label><input class="in" id="f-'+s.id+'" type="'+s.input.type+'" placeholder="'+s.input.ph+'" autocomplete="'+s.input.ac+'"'+(s.input.im?' inputmode="'+s.input.im+'"':'')+' value="'+esc(A[s.id])+'" style="margin-top:14px">';
+    } else if (s.type === "phone"){
+      h += '<label class="lbl" for="f-phone" style="position:absolute;left:-9999px">Phone</label><input class="in" id="f-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+1 (555) 000-0000" value="'+esc(A.phone)+'" style="margin-top:14px">'
+        + '<div class="consent">'
+        + '<label><input type="checkbox" id="f-smsCare"'+(A.smsCare?' checked':'')+'><span>I consent to receive non-marketing text messages from QHAUZ about my inquiry, scheduled strategy calls (confirmations and reminders), requested follow-up and customer service. Message frequency may vary. Message &amp; data rates may apply. Text HELP for assistance, reply STOP to opt out. Consent is not a condition of purchase.</span></label>'
+        + '<label><input type="checkbox" id="f-smsMkt"'+(A.smsMkt?' checked':'')+'><span>I consent to receive marketing text messages from QHAUZ about dealer growth tips, special offers, new services and other promotional information at the phone number provided. Message frequency may vary. Message &amp; data rates may apply. Text HELP for assistance, reply STOP to opt out. Consent is not a condition of purchase.</span></label>'
+        + '</div><p class="legal"><a href="https://sms.qhauz.com/" target="_blank" rel="noopener">Privacy Policy</a> | <a href="https://sms.qhauz.com/" target="_blank" rel="noopener">Terms and Conditions</a></p>';
+    }
+    h += '<p class="err" id="err" role="alert"></p>';
+    body.innerHTML = h;
+
+    body.querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>{
+      A[s.id] = b.dataset.v;
+      body.querySelectorAll(".opt").forEach(x=>x.setAttribute("aria-pressed", String(x===b)));
+      if (s.id === "role"){
+        const w = document.getElementById("otherWrap");
+        if (A.role === "Other"){ w.hidden = false; document.getElementById("f-roleOther").focus(); return; }
+        w.hidden = true;
+      }
+      setTimeout(go, 220);
+    }));
+    const f = body.querySelector(".in"); if (f && s.type !== "choice") f.focus();
+  }
+
+  function fail(msg, field){
+    document.getElementById("err").textContent = msg;
+    if (field){ field.classList.add("bad"); field.focus(); }
+    return false;
+  }
+
+  function valid(){
+    const s = Q[i];
+    if (s.type === "choice"){
+      if (!A[s.id]) return fail("Pick one to continue.");
+      if (s.id === "role" && A.role === "Other"){
+        const o = document.getElementById("f-roleOther"); A.roleOther = o.value.trim();
+        if (!A.roleOther) return fail("Type your role so we know who we're talking to.", o);
+      }
+      return true;
+    }
+    if (s.id === "phone"){
+      const p = document.getElementById("f-phone"); A.phone = p.value.trim();
+      A.smsCare = document.getElementById("f-smsCare").checked; A.smsMkt = document.getElementById("f-smsMkt").checked;
+      if (A.phone.replace(/\D/g,"").length < 10) return fail("Enter a 10-digit phone number, area code first.", p);
+      return true;
+    }
+    const f = document.getElementById("f-"+s.id); let v = f.value.trim();
+    if (s.id === "website"){
+      if (!v) return fail("Add your dealership's website.", f);
+      if (!/^https?:\/\//i.test(v)) v = "https://" + v;
+      if (!/^https?:\/\/[^\s.]+\.[^\s]{2,}/i.test(v)) return fail("That doesn't look like a web address. Try yourstore.com.", f);
+    }
+    if (s.id === "name" && v.split(/\s+/).length < 2) return fail("Add your first and last name.", f);
+    if (s.id === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return fail("Check the email address. It needs an @ and a domain.", f);
+    A[s.id] = v; return true;
+  }
+
+  function go(){
+    if (!valid()) return;
+    if (i < Q.length-1){ i++; render(); return; }
+    finish();
+  }
+
+  function finish(){
+    bar.style.width = "100%";
+    count.textContent = "Done";
+    foot.hidden = true;
+    const first = esc(A.name.split(/\s+/)[0] || "");
+    let h = '<div class="done">';
+    if (A.role === "Owner"){
+      h += '<h3>Thanks, ' + first + '. Pick a time that works.</h3>'
+        + '<p>Your Ad Plan call is a 20-minute Google Meet with Jeremy, built around ' + esc(A.website.replace(/^https?:\/\//,"")) + '.</p>';
+    } else if (A.role.startsWith("Manager")){
+      h += '<h3>Thanks, ' + first + '. Pick a time, and bring the owner if you can.</h3>'
+        + '<p>Ad budgets usually need the owner\'s sign-off. Calls with the owner on go much further, so choose a time they can join.</p>';
+    } else {
+      h += '<h3>Thanks, ' + first + '.</h3>'
+        + '<p>This call is built for the person who runs the store. If that\'s not you, send this page to the owner or GM. You can still book a time below if you\'ll be making the decision.</p>';
+    }
+    h += '<ul><li>Google Meet, 20 minutes, from your phone or laptop.</li><li>Your link arrives by email and text right after you book.</li><li>Jeremy calls the day before to confirm.</li></ul>'
+      + '<a class="cta-cal" href="' + CAL + '" target="_blank" rel="noopener">Choose your time →</a>'
+      + '<p class="note">Can\'t find a time that works? Call (913) 407-7430.</p></div>';
+    body.innerHTML = h;
+  }
+
+  form.addEventListener("submit", e=>{ e.preventDefault(); go(); });
+  back.addEventListener("click", ()=>{ if (i>0){ i--; render(); } });
+  body.addEventListener("input", e=>{ e.target.classList && e.target.classList.remove("bad"); const er=document.getElementById("err"); if(er) er.textContent=""; });
+  render();
+})();
+</script>
